@@ -9,7 +9,7 @@ int main() {
         off_t   img_size;       // img size in bytes
         char*   img_buf;        // buffer to store img data
 
-        img_fp = fopen("./img/pfp.jpg", "rb");
+        img_fp = fopen("./img/img.jpg", "rb");
 
         if (img_fp == NULL) {
                 perror("[E] Open image");
