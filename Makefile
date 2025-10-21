@@ -13,10 +13,10 @@ LIBS =
 TARGET = main
 
 # Source files
-SRCS = main.c
+SRCS = main.c img_utils.c
 
-# Object files (now in build/)
-OBJS = build/$(SRCS:.c=.o)
+# Object files
+OBJS = $(SRCS:%.c=build/%.o)
 
 # Default target
 all: build/$(TARGET)
@@ -39,5 +39,5 @@ clean:
 
 # Run the program
 run: build/$(TARGET)
-	./build/$(TARGET)
+	@./build/$(TARGET)
 
