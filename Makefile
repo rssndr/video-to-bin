@@ -15,25 +15,29 @@ TARGET = main
 # Source files
 SRCS = main.c
 
-# Object files
-OBJS = $(SRCS:.c=.o)
+# Object files (now in build/)
+OBJS = build/$(SRCS:.c=.o)
 
 # Default target
-all: $(TARGET)
+all: build/$(TARGET)
+
+# Create build directory
+build:
+	mkdir -p build
 
 # Linking the target executable
-$(TARGET): $(OBJS)
-	$(CC) $(OBJS) -o $(TARGET) $(LIBS)
+build/$(TARGET): $(OBJS)
+	$(CC) $(OBJS) -o build/$(TARGET) $(LIBS)
 
 # Compiling source files
-%.o: %.c
+build/%.o: %.c | build
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # Clean up
 clean:
-	rm -f $(OBJS) $(TARGET)
+	rm -rf build
 
 # Run the program
-run: $(TARGET)
-	./$(TARGET)
+run: build/$(TARGET)
+	./build/$(TARGET)
 
